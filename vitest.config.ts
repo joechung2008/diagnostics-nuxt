@@ -28,7 +28,7 @@ export default defineConfig({
       {
         test: {
           name: "unit",
-          environment: "node",
+          environment: "jsdom",
           include: ["tests/unit/**/*.spec.ts"],
         },
       },

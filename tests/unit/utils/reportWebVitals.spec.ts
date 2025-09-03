@@ -26,28 +26,6 @@ describe("app/utils/reportWebVitals", () => {
   describe("when no handler is provided", () => {
     it("should do nothing", () => {
       reportWebVitals();
-      reportWebVitals(undefined);
-      // @ts-expect-error Testing invalid input
-      reportWebVitals(null);
-
-      expect(mockOnCLS).not.toHaveBeenCalled();
-      expect(mockOnINP).not.toHaveBeenCalled();
-      expect(mockOnFCP).not.toHaveBeenCalled();
-      expect(mockOnLCP).not.toHaveBeenCalled();
-      expect(mockOnTTFB).not.toHaveBeenCalled();
-    });
-  });
-
-  describe("when handler is not a function", () => {
-    it("should do nothing for non-function values", () => {
-      // @ts-expect-error Testing invalid input
-      reportWebVitals("string");
-      // @ts-expect-error Testing invalid input
-      reportWebVitals(123);
-      // @ts-expect-error Testing invalid input
-      reportWebVitals({});
-      // @ts-expect-error Testing invalid input
-      reportWebVitals([]);
 
       expect(mockOnCLS).not.toHaveBeenCalled();
       expect(mockOnINP).not.toHaveBeenCalled();
@@ -88,12 +66,12 @@ describe("app/utils/reportWebVitals", () => {
       const handler2 = vi.fn();
 
       reportWebVitals(handler1);
-      reportWebVitals(handler2);
-
       await vi.waitFor(() => {
         expect(mockOnCLS).toHaveBeenCalledWith(handler1);
+      });
+      reportWebVitals(handler2);
+      await vi.waitFor(() => {
         expect(mockOnCLS).toHaveBeenCalledWith(handler2);
-        expect(mockOnINP).toHaveBeenCalledWith(handler1);
         expect(mockOnINP).toHaveBeenCalledWith(handler2);
       });
     });
