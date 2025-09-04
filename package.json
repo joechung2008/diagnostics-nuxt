@@ -32,7 +32,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "format": "prettier --write .",
-    "lint": "eslint --concurrency=auto",
+    "lint": "eslint --concurrency=auto .",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview",
